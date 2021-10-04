@@ -27,13 +27,15 @@ def main():
         with open(source_file_path, 'r') as f:
             data = f.read()
 
-        # There are 23 characters in the search term, so we offset this
+        # There are 23 characters in the search term, so we offset by this amount
         first_name_start = data.find("<patient><name><family>") + 23
         first_name_end = first_name_start + data[first_name_start:].find("</family><given>")
 
         last_name_start = first_name_end + 16
         last_name_end = last_name_start + data[last_name_start:].find("</given>")
 
+        # Note: if I recall correctly the first_ and last_ variales were actually switched; first actually 
+        # corresponding to last, and last to first
         # print("First start "+ str(first_name_start))
         # print("First end "+ str(first_name_end))    
         # print("Last start "+ str(last_name_start))
